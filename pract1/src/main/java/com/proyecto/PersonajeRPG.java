@@ -3,25 +3,36 @@ package com.proyecto;
 import java.util.ArrayList;
 
 public class PersonajeRPG {
-    
-/***************************atributos constantes***********************************************************/
-public static final int CLASE_GUERRERO =1;
-public static final int CLASE_MAGO =2;
-public static final int CLASE_ARQUERO=3;
-public static final int CLASE_ASESINO=4;
 
-/****************************atributos******************************************************************************/
-private int idPersonaje;
-public String nombrePersonaje;
-private int clasePersonaje;
-private int nivel;
-private int puntosVida;
-private double puntosDanio;
-private boolean esLegendario;
-private ArrayList<String> habilidades;
-private String guildName;
-/**************************constructor vacio****************************************************************************************/
+    // ----------------------------- atributos constantes -----------------------------
 
+    /** Clase Guerrero. */
+    public static final int CLASE_GUERRERO =1;
+    /** Clase Mago. */
+    public static final int CLASE_MAGO =2;
+    /** Clase Arquero. */
+    public static final int CLASE_ARQUERO=3;
+    /** Clase Asesino. */
+    public static final int CLASE_ASESINO=4;
+
+    // --------------------------------- atributos ------------------------------------
+
+    private int idPersonaje;
+    /** Nombre del personaje. */
+    public String nombrePersonaje;
+    private int clasePersonaje;
+    private int nivel;
+    private int puntosVida;
+    private double puntosDanio;
+    private boolean esLegendario;
+    private ArrayList<String> habilidades;
+    private String guildName;
+
+    // ------------------------------ constructor vacio -------------------------------
+
+    /**
+     * Crea un personaje con valores aleatorios.
+     */
     public PersonajeRPG() 
     {
         this.idPersonaje= (int)(Math.random()*99999)+10000;
@@ -34,8 +45,23 @@ private String guildName;
         this.habilidades= new ArrayList<>();
         this.guildName="";
     }
- /************************constructor completo*********************************************************************************************************/   
 
+    // ----------------------------- constructor completo -----------------------------
+
+    /**
+     * Crea un personaje con los datos que se le pasan.
+     * El id se genera siempre al azar.
+     *
+     * @param idPersonaje id (no se usa)
+     * @param nombrePersonaje nombre del personaje
+     * @param clasePersonaje clase del personaje (de 1 a 4)
+     * @param nivel nivel del personaje
+     * @param puntosVida puntos de vida
+     * @param puntosDanio puntos de daño
+     * @param esLegendario si es legendario o no
+     * @param habilidades lista de habilidades
+     * @param guildName nombre del gremio
+     */
     public PersonajeRPG(int idPersonaje, String nombrePersonaje, int clasePersonaje, int nivel, int puntosVida, double puntosDanio, boolean esLegendario, ArrayList<String> habilidades, String guildName) {
         this.idPersonaje = (int)(Math.random()*99999)+10000;
         this.nombrePersonaje = nombrePersonaje;
@@ -48,7 +74,7 @@ private String guildName;
         this.guildName = guildName;
     }
 
-/***********************gets y sets*****************************************************************************************************************************************/
+    // -------------------------------- gets y sets -----------------------------------
 
     public int getIdPersonaje() {
         return this.idPersonaje;
@@ -122,8 +148,13 @@ private String guildName;
         this.guildName = guildName;
     }
 
-/********************toString**************************************************************************************************************/
+    // ---------------------------------- toString ------------------------------------
 
+    /**
+     * Devuelve un texto con los datos del personaje.
+     *
+     * @return los datos del personaje en texto
+     */
     @Override
     public String toString() {
         String clasePersonaje;
@@ -155,9 +186,4 @@ private String guildName;
             ", guildName='" + getGuildName() + "'" +
             "}";
     }
-
-
-
-
 }
-

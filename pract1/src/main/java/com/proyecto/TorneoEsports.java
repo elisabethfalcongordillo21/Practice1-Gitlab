@@ -5,9 +5,11 @@ import java.util.Comparator;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+
 public class TorneoEsports {
-/*********************atributos**************************************************/    
+// --------------------------------- atributos ------------------------------------
 private String codigoTorneo;
+/** Nombre del torneo. */
 public String nombreTorneo;
 private int jugadoresResgistrados;
 private ArrayList<PersonajeRPG>listaJugadores;
@@ -16,8 +18,11 @@ private int poolPremios;
 private int requiereNivelMinimo;
 private boolean esRanked;
 
-/*******************constructor vacio************************************************************/
+// ------------------------------ constructor vacio -------------------------------
 
+    /**
+     * Crea un torneo con valores por defecto y una lista de jugadores vacía.
+     */
     public TorneoEsports() 
     {
         this.codigoTorneo="";
@@ -30,7 +35,20 @@ private boolean esRanked;
         this.esRanked=false;
     }
 
-/*****************constructor****************************************************************************/    
+// -------------------------------- constructor -----------------------------------
+
+    /**
+     * Crea un torneo con los datos que se le pasan.
+     * Los jugadores registrados se calculan con el tamaño de la lista.
+     *
+     * @param codigoTorneo código del torneo
+     * @param nombreTorneo nombre del torneo
+     * @param listaJugadores lista de personajes inscritos
+     * @param servidorRegion servidor o región del torneo
+     * @param poolPremios dinero total de premios
+     * @param requiereNivelMinimo nivel mínimo para participar
+     * @param esRanked si el torneo es ranked o no
+     */
     public TorneoEsports(String codigoTorneo, String nombreTorneo, ArrayList<PersonajeRPG> listaJugadores, String servidorRegion, int poolPremios, int requiereNivelMinimo, boolean esRanked) {
         this.codigoTorneo = codigoTorneo;
         this.nombreTorneo = nombreTorneo;
@@ -41,7 +59,7 @@ private boolean esRanked;
         this.requiereNivelMinimo = requiereNivelMinimo;
         this.esRanked = esRanked;
     }
-/********************gets y sets******************************************************************************/    
+// -------------------------------- gets y sets -----------------------------------
 
     public String getCodigoTorneo() {
         return this.codigoTorneo;
@@ -106,8 +124,14 @@ private boolean esRanked;
     public void setEsRanked(boolean esRanked) {
         this.esRanked = esRanked;
     }
-/*****************funciones*********************************************************************************/
+// ---------------------------------- funciones -----------------------------------
 
+/**
+ * Calcula el daño medio de los personajes de una clase.
+ *
+ * @param claseFiltro clase a buscar (de 1 a 4)
+ * @return la media de puntos de daño, o 0.0 si no hay personajes de esa clase
+ */
 public double calcularDanioPromedioClase(int claseFiltro)
 {
     return listaJugadores.stream()
@@ -122,6 +146,13 @@ public double calcularDanioPromedioClase(int claseFiltro)
 }
 
 
+/**
+ * Cuenta los personajes legendarios que tienen una habilidad.
+ *
+ * @param habilidadBuscada nombre de la habilidad a buscar
+ * @return cuántos legendarios tienen esa habilidad
+ */
+
 public int contarPersonajesLegendariosConHabilidad(String habilidadBuscada)
 {
      return (int) listaJugadores.stream()
@@ -135,6 +166,12 @@ public int contarPersonajesLegendariosConHabilidad(String habilidadBuscada)
         .count();
 }
 
+/**
+ * Devuelve los personajes con más vida.
+ *
+ * @param topN cuántos personajes quieres en el top
+ * @return lista con los topN personajes de más a menos vida, o vacía si topN es 0 o menor
+ */
 public ArrayList<PersonajeRPG> obtenerTopPersonajesPorVida(int topN)
 {
     //creamos un if poara que si no hay ningun jugador en el top devuelva un array vacio
@@ -153,6 +190,13 @@ public ArrayList<PersonajeRPG> obtenerTopPersonajesPorVida(int topN)
 
 }
 
+/**
+ * Busca el personaje más fuerte de un gremio.
+ * Gana el que más daño tiene; si empatan, el de más nivel.
+ *
+ * @param nombreGremio nombre del gremio (no distingue mayúsculas)
+ * @return el personaje más fuerte, o {@code null} si no hay ninguno en ese gremio
+ */
 public PersonajeRPG buscarPersonajeMasFuerteDeGremio(String nombreGremio)
 {
     return listaJugadores.stream()
@@ -166,6 +210,14 @@ public PersonajeRPG buscarPersonajeMasFuerteDeGremio(String nombreGremio)
     .orElse(null);    
 }
 
+/**
+ * Sube el nivel a todos los personajes (máximo 100) y elimina a los que
+ * se quedan por debajo del nivel mínimo.
+ *
+ * @param incrementoNivel niveles que se suman a cada personaje
+ * @param nivelMinimoSupervivencia nivel mínimo para no ser eliminado
+ * @return true si se eliminó a algún personaje, false si no
+ */
 public boolean actualizarNivelesYEliminarDebiles(int incrementoNivel, int nivelMinimoSupervivencia)
 {
     int antes =listaJugadores.size(); //guardamos cuantos habia al principio
@@ -182,8 +234,5 @@ public boolean actualizarNivelesYEliminarDebiles(int incrementoNivel, int nivelM
     //si el tamaño de ahora es menor que el de antes, es que hemos borrado a alguien
     return listaJugadores.size() <antes;
 }
-
-
-
 
 }

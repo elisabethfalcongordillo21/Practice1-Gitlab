@@ -2,23 +2,29 @@ package com.proyecto;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a character of a role-playing game (RPG).
+ *
+ * @author Eli
+ * @version 1.0
+ */
 public class PersonajeRPG {
 
-    // ----------------------------- atributos constantes -----------------------------
+    // ------------------------------ constant attributes ------------------------------
 
-    /** Clase Guerrero. */
+    /** Warrior class. */
     public static final int CLASE_GUERRERO =1;
-    /** Clase Mago. */
+    /** Mage class. */
     public static final int CLASE_MAGO =2;
-    /** Clase Arquero. */
+    /** Archer class. */
     public static final int CLASE_ARQUERO=3;
-    /** Clase Asesino. */
+    /** Assassin class. */
     public static final int CLASE_ASESINO=4;
 
-    // --------------------------------- atributos ------------------------------------
+    // --------------------------------- attributes -----------------------------------
 
     private int idPersonaje;
-    /** Nombre del personaje. */
+    /** Name of the character. */
     public String nombrePersonaje;
     private int clasePersonaje;
     private int nivel;
@@ -28,10 +34,10 @@ public class PersonajeRPG {
     private ArrayList<String> habilidades;
     private String guildName;
 
-    // ------------------------------ constructor vacio -------------------------------
+    // ------------------------------ empty constructor -------------------------------
 
     /**
-     * Crea un personaje con valores aleatorios.
+     * Creates a character with random values.
      */
     public PersonajeRPG() 
     {
@@ -46,21 +52,21 @@ public class PersonajeRPG {
         this.guildName="";
     }
 
-    // ----------------------------- constructor completo -----------------------------
+    // ----------------------------- full constructor ---------------------------------
 
     /**
-     * Crea un personaje con los datos que se le pasan.
-     * El id se genera siempre al azar.
+     * Creates a character with the given data.
+     * The id is always generated randomly.
      *
-     * @param idPersonaje id (no se usa)
-     * @param nombrePersonaje nombre del personaje
-     * @param clasePersonaje clase del personaje (de 1 a 4)
-     * @param nivel nivel del personaje
-     * @param puntosVida puntos de vida
-     * @param puntosDanio puntos de daño
-     * @param esLegendario si es legendario o no
-     * @param habilidades lista de habilidades
-     * @param guildName nombre del gremio
+     * @param idPersonaje id (not used)
+     * @param nombrePersonaje name of the character
+     * @param clasePersonaje class of the character (from 1 to 4)
+     * @param nivel level of the character
+     * @param puntosVida life points
+     * @param puntosDanio damage points
+     * @param esLegendario whether it is legendary or not
+     * @param habilidades list of skills
+     * @param guildName name of the guild
      */
     public PersonajeRPG(int idPersonaje, String nombrePersonaje, int clasePersonaje, int nivel, int puntosVida, double puntosDanio, boolean esLegendario, ArrayList<String> habilidades, String guildName) {
         this.idPersonaje = (int)(Math.random()*99999)+10000;
@@ -74,7 +80,7 @@ public class PersonajeRPG {
         this.guildName = guildName;
     }
 
-    // -------------------------------- gets y sets -----------------------------------
+    // -------------------------------- getters and setters ---------------------------
 
     public int getIdPersonaje() {
         return this.idPersonaje;
@@ -151,9 +157,9 @@ public class PersonajeRPG {
     // ---------------------------------- toString ------------------------------------
 
     /**
-     * Devuelve un texto con los datos del personaje.
+     * Returns a text with the data of the character.
      *
-     * @return los datos del personaje en texto
+     * @return the data of the character as text
      */
     @Override
     public String toString() {
@@ -186,4 +192,5 @@ public class PersonajeRPG {
             ", guildName='" + getGuildName() + "'" +
             "}";
     }
+
 }

@@ -5,11 +5,16 @@ import java.util.Comparator;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-
+/**
+ * Represents an esports tournament with a list of registered RPG characters.
+ *
+ * @author Eli
+ * @version 1.0
+ */
 public class TorneoEsports {
-// --------------------------------- atributos ------------------------------------
+// --------------------------------- attributes -----------------------------------
 private String codigoTorneo;
-/** Nombre del torneo. */
+/** Name of the tournament. */
 public String nombreTorneo;
 private int jugadoresResgistrados;
 private ArrayList<PersonajeRPG>listaJugadores;
@@ -18,10 +23,10 @@ private int poolPremios;
 private int requiereNivelMinimo;
 private boolean esRanked;
 
-// ------------------------------ constructor vacio -------------------------------
+// ------------------------------ empty constructor -------------------------------
 
     /**
-     * Crea un torneo con valores por defecto y una lista de jugadores vacía.
+     * Creates a tournament with default values and an empty list of players.
      */
     public TorneoEsports() 
     {
@@ -38,16 +43,16 @@ private boolean esRanked;
 // -------------------------------- constructor -----------------------------------
 
     /**
-     * Crea un torneo con los datos que se le pasan.
-     * Los jugadores registrados se calculan con el tamaño de la lista.
+     * Creates a tournament with the given data.
+     * The number of registered players is calculated from the size of the list.
      *
-     * @param codigoTorneo código del torneo
-     * @param nombreTorneo nombre del torneo
-     * @param listaJugadores lista de personajes inscritos
-     * @param servidorRegion servidor o región del torneo
-     * @param poolPremios dinero total de premios
-     * @param requiereNivelMinimo nivel mínimo para participar
-     * @param esRanked si el torneo es ranked o no
+     * @param codigoTorneo code of the tournament
+     * @param nombreTorneo name of the tournament
+     * @param listaJugadores list of registered characters
+     * @param servidorRegion server or region of the tournament
+     * @param poolPremios total prize money
+     * @param requiereNivelMinimo minimum level to take part
+     * @param esRanked whether the tournament is ranked or not
      */
     public TorneoEsports(String codigoTorneo, String nombreTorneo, ArrayList<PersonajeRPG> listaJugadores, String servidorRegion, int poolPremios, int requiereNivelMinimo, boolean esRanked) {
         this.codigoTorneo = codigoTorneo;
@@ -59,7 +64,7 @@ private boolean esRanked;
         this.requiereNivelMinimo = requiereNivelMinimo;
         this.esRanked = esRanked;
     }
-// -------------------------------- gets y sets -----------------------------------
+// -------------------------------- getters and setters ---------------------------
 
     public String getCodigoTorneo() {
         return this.codigoTorneo;
@@ -124,114 +129,113 @@ private boolean esRanked;
     public void setEsRanked(boolean esRanked) {
         this.esRanked = esRanked;
     }
-// ---------------------------------- funciones -----------------------------------
+// ---------------------------------- functions -----------------------------------
 
 /**
- * Calcula el daño medio de los personajes de una clase.
+ * Calculates the average damage of the characters of a class.
  *
- * @param claseFiltro clase a buscar (de 1 a 4)
- * @return la media de puntos de daño, o 0.0 si no hay personajes de esa clase
+ * @param claseFiltro class to look for (from 1 to 4)
+ * @return the average damage points, or 0.0 if there are no characters of that class
  */
 public double calcularDanioPromedioClase(int claseFiltro)
 {
     return listaJugadores.stream()
-    //filtrar por la clasePersonaje, si coincide, continua
+    //filter by clasePersonaje, if it matches, continue
     .filter(j->j.getClasePersonaje() == claseFiltro)
-    //coge los valores de PuntosDanio
+    //get the values of PuntosDanio
     .mapToDouble(j -> j.getPuntosDanio())
-    //hace la media
+    //calculate the average
     .average()
-    //devuelve 0.0 si no hay personajes o si no tiene participantes
+    //returns 0.0 if there are no characters or no participants
     .orElse(0.0);
 }
 
 
 /**
- * Cuenta los personajes legendarios que tienen una habilidad.
+ * Counts the legendary characters that have a skill.
  *
- * @param habilidadBuscada nombre de la habilidad a buscar
- * @return cuántos legendarios tienen esa habilidad
+ * @param habilidadBuscada name of the skill to look for
+ * @return how many legendary characters have that skill
  */
-
 public int contarPersonajesLegendariosConHabilidad(String habilidadBuscada)
 {
      return (int) listaJugadores.stream()
-     //filtra por si es legendario, si lo es continua
+     //filter by legendary, if it is, continue
      .filter(j-> j.isEsLegendario())
-     //filtra las habilidades si contienen la habilidadBuscada
+     //filter the skills, keep those that contain habilidadBuscada
     .filter(j-> j.getHabilidades().contains(habilidadBuscada
-        //las convierte en minuscula
+        //converts them to lowercase
         .toLowerCase()))
-        //las cuenta
+        //counts them
         .count();
 }
 
 /**
- * Devuelve los personajes con más vida.
+ * Returns the characters with the most life.
  *
- * @param topN cuántos personajes quieres en el top
- * @return lista con los topN personajes de más a menos vida, o vacía si topN es 0 o menor
+ * @param topN how many characters you want in the top
+ * @return list with the top N characters from most to least life, or empty if topN is 0 or less
  */
 public ArrayList<PersonajeRPG> obtenerTopPersonajesPorVida(int topN)
 {
-    //creamos un if poara que si no hay ningun jugador en el top devuelva un array vacio
+    //if there is nobody in the top, return an empty array
     if (topN<=0) {
         return new ArrayList<>();
     }
 
-    //si hay, se devuelve la lista de jugadores
+    //otherwise, return the list of players
     return listaJugadores.stream()
-    //se comparan los puntos de vida del jugador 2 con el jugador 1
+    //compare the life points of player 2 with player 1
     .sorted((p1,p2) -> Integer.compare(p2.getPuntosVida(), p1.getPuntosVida()))
-    // con limit limitamos la salida de los jugadores que queremos en el top(N)
+    // limit the output to the number of players we want in the top (N)
     .limit(topN)
-    //con collect creamos un nuevo array donde se guardaran estos jugadores del top
+    //collect creates a new array where these top players are stored
     .collect(Collectors.toCollection(ArrayList::new));
 
 }
 
 /**
- * Busca el personaje más fuerte de un gremio.
- * Gana el que más daño tiene; si empatan, el de más nivel.
+ * Finds the strongest character of a guild.
+ * The one with the most damage wins; if there is a tie, the one with the highest level.
  *
- * @param nombreGremio nombre del gremio (no distingue mayúsculas)
- * @return el personaje más fuerte, o {@code null} si no hay ninguno en ese gremio
+ * @param nombreGremio name of the guild (not case sensitive)
+ * @return the strongest character, or {@code null} if there is nobody in that guild
  */
 public PersonajeRPG buscarPersonajeMasFuerteDeGremio(String nombreGremio)
 {
     return listaJugadores.stream()
-    //se filtra por el nombre de gremio haciendo que sea sensible
+    //filter by guild name, ignoring upper and lower case
     .filter(jugador->jugador.getGuildName().equalsIgnoreCase(nombreGremio))
-    //con el max.comparator comparamos los puntos de daño del personaje cogiendo el mayor
+    //with max and comparator we compare the damage points and take the highest
     .max(Comparator.comparingDouble(PersonajeRPG::getPuntosDanio)
-    //entonces comparamos el nivel de los personajes
+    //then we compare the level of the characters
     .thenComparing(PersonajeRPG::getNivel))
-    //si no devuelve null
+    //if there is none, return null
     .orElse(null);    
 }
 
 /**
- * Sube el nivel a todos los personajes (máximo 100) y elimina a los que
- * se quedan por debajo del nivel mínimo.
+ * Raises the level of all characters (maximum 100) and removes those
+ * that stay below the minimum level.
  *
- * @param incrementoNivel niveles que se suman a cada personaje
- * @param nivelMinimoSupervivencia nivel mínimo para no ser eliminado
- * @return true si se eliminó a algún personaje, false si no
+ * @param incrementoNivel levels added to each character
+ * @param nivelMinimoSupervivencia minimum level to avoid being removed
+ * @return {@code true} if any character was removed, {@code false} if not
  */
 public boolean actualizarNivelesYEliminarDebiles(int incrementoNivel, int nivelMinimoSupervivencia)
 {
-    int antes =listaJugadores.size(); //guardamos cuantos habia al principio
+    int antes =listaJugadores.size(); //we save how many there were at the start
 
-    //subimos nivel a todos con el tope de 100
+    //raise the level of everyone with a cap of 100
     for (PersonajeRPG p : listaJugadores) {
         int nuevoNivel = p.getNivel() + incrementoNivel;
         p.setNivel(Math.min(100, nuevoNivel));
     }
-    //borramos los que no llegan al minimo
+    //remove those that do not reach the minimum
     listaJugadores.removeIf(p->p.getNivel()<nivelMinimoSupervivencia);
-    //actualizar contador total
+    //update the total counter
     this.jugadoresResgistrados=listaJugadores.size();
-    //si el tamaño de ahora es menor que el de antes, es que hemos borrado a alguien
+    //if the current size is smaller than before, someone has been removed
     return listaJugadores.size() <antes;
 }
 

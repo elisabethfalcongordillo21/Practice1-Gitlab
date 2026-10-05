@@ -2,26 +2,43 @@ package com.proyecto;
 
 import java.util.ArrayList;
 
+/**
+ * Represents a character of a role-playing game (RPG).
+ *
+ * @author Eli
+ * @version 1.0
+ */
 public class PersonajeRPG {
-    
-/***************************atributos constantes***********************************************************/
-public static final int CLASE_GUERRERO =1;
-public static final int CLASE_MAGO =2;
-public static final int CLASE_ARQUERO=3;
-public static final int CLASE_ASESINO=4;
 
-/****************************atributos******************************************************************************/
-private int idPersonaje;
-public String nombrePersonaje;
-private int clasePersonaje;
-private int nivel;
-private int puntosVida;
-private double puntosDanio;
-private boolean esLegendario;
-private ArrayList<String> habilidades;
-private String guildName;
-/**************************constructor vacio****************************************************************************************/
+    // ------------------------------ constant attributes ------------------------------
 
+    /** Warrior class. */
+    public static final int CLASE_GUERRERO =1;
+    /** Mage class. */
+    public static final int CLASE_MAGO =2;
+    /** Archer class. */
+    public static final int CLASE_ARQUERO=3;
+    /** Assassin class. */
+    public static final int CLASE_ASESINO=4;
+
+    // --------------------------------- attributes -----------------------------------
+
+    private int idPersonaje;
+    /** Name of the character. */
+    public String nombrePersonaje;
+    private int clasePersonaje;
+    private int nivel;
+    private int puntosVida;
+    private double puntosDanio;
+    private boolean esLegendario;
+    private ArrayList<String> habilidades;
+    private String guildName;
+
+    // ------------------------------ empty constructor -------------------------------
+
+    /**
+     * Creates a character with random values.
+     */
     public PersonajeRPG() 
     {
         this.idPersonaje= (int)(Math.random()*99999)+10000;
@@ -34,8 +51,23 @@ private String guildName;
         this.habilidades= new ArrayList<>();
         this.guildName="";
     }
- /************************constructor completo*********************************************************************************************************/   
 
+    // ----------------------------- full constructor ---------------------------------
+
+    /**
+     * Creates a character with the given data.
+     * The id is always generated randomly.
+     *
+     * @param idPersonaje id (not used)
+     * @param nombrePersonaje name of the character
+     * @param clasePersonaje class of the character (from 1 to 4)
+     * @param nivel level of the character
+     * @param puntosVida life points
+     * @param puntosDanio damage points
+     * @param esLegendario whether it is legendary or not
+     * @param habilidades list of skills
+     * @param guildName name of the guild
+     */
     public PersonajeRPG(int idPersonaje, String nombrePersonaje, int clasePersonaje, int nivel, int puntosVida, double puntosDanio, boolean esLegendario, ArrayList<String> habilidades, String guildName) {
         this.idPersonaje = (int)(Math.random()*99999)+10000;
         this.nombrePersonaje = nombrePersonaje;
@@ -48,7 +80,7 @@ private String guildName;
         this.guildName = guildName;
     }
 
-/***********************gets y sets*****************************************************************************************************************************************/
+    // -------------------------------- getters and setters ---------------------------
 
     public int getIdPersonaje() {
         return this.idPersonaje;
@@ -122,8 +154,13 @@ private String guildName;
         this.guildName = guildName;
     }
 
-/********************toString**************************************************************************************************************/
+    // ---------------------------------- toString ------------------------------------
 
+    /**
+     * Returns a text with the data of the character.
+     *
+     * @return the data of the character as text
+     */
     @Override
     public String toString() {
         String clasePersonaje;
@@ -156,8 +193,4 @@ private String guildName;
             "}";
     }
 
-
-
-
 }
-

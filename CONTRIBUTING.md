@@ -25,3 +25,10 @@ Each commit must make only one change.
 3. Write a clear title and explain what you have changed.
 4. Review the changes before approving it.
 5. Once approved, merge it into `main`.
+
+## Code Changes
+
+* Use the same coding style as the rest of the project.
+* Test your changes before you push them.
+* Only make changes that match the purpose of your branch.
+* Update the documentation if your changes affect it.

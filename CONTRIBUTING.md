@@ -1,27 +1,27 @@
-# Cómo colaborar
+# How to contribute
 
-## Ramas
+## Branches
 
-- "Main" es la rama principal. No se trabaja directamente en ella.
-- Cada cambio se hace en una rama nueva, creada desde "main".
-- Los nombres de las ramas empiezan por "feature/" (algo nuevo), "fix/" (arreglar un error) o "docs/" (documentación).
+- `main` is the main branch. Nobody works directly on it.
+- Every change is made in a new branch, created from `main`.
+- Branch names start with `feature/` (something new), `fix/` (fixing a bug) or `docs/` (documentation).
 
 ## Commits
 
-Los mensajes de commit tienen este formato: "tipo: descripción corta"
+Commit messages use this format: `type: short description`
 
-Los tipos son:
+The types are:
 
-- "feat": algo nuevo
-- "fix": arreglar un error
-- "docs": documentación
+- `feat`: something new
+- `fix`: fixing a bug
+- `docs`: documentation
 
-Cada commit tiene que hacer un solo cambio.
+Each commit must make only one change.
 
 ## Pull Requests
 
-1. Sube tu rama al repositorio.
-2. Abre una Pull Request hacia "main".
-3. Pon un título claro y explica qué has cambiado.
-4. Revisa los cambios antes de aprobarla.
-5. Cuando esté aprobada, haz el merge a "main".
+1. Push your branch to the repository.
+2. Open a Pull Request targeting `main`.
+3. Write a clear title and explain what you have changed.
+4. Review the changes before approving it.
+5. Once approved, merge it into `main`.

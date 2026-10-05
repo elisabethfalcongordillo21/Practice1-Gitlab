@@ -1,39 +1,38 @@
 # Proyecto Torneo RPG
 
-## Descripción
+## Description
 
-Este proyecto es un programa en Java que simula un torneo de un videojuego de rol. Tiene dos clases:
+This project is a Java program that simulates a role-playing video game tournament. It has two classes:
 
-- PersonajeRPG: es un personaje del juego. Guarda su id, nombre, clase (guerrero, mago, arquero o asesino), nivel, vida, daño, habilidades y gremio.
-- TorneoEsports: es un torneo con una lista de personajes. Sirve para calcular el daño medio de una clase, contar legendarios con una habilidad, sacar el top de personajes con más vida, buscar el más fuerte de un gremio y subir de nivel a todos eliminando a los más débiles.
+- PersonajeRPG: a character of the game. It stores its id, name, class (warrior, mage, archer or assassin), level, life, damage, skills and guild.
+- TorneoEsports: a tournament with a list of characters. It is used to calculate the average damage of a class, count legendary characters with a skill, get the top characters with the most life, find the strongest character of a guild, and raise the level of everyone while removing the weakest ones.
 
-El código está documentado con Javadoc.
+The code is documented with Javadoc.
 
-## Requisitos previos
+## Prerequisites
 
-Hay que tener instalado:
+You need to have installed:
 
-- Java JDK 17 o superior (mira la versión exacta en el `pom.xml`)
+- Java JDK 17 or higher (check the exact version in the `pom.xml`)
 - Maven
 - Git
 
-## Instalación paso a paso
+## Step-by-step installation
 
-1. Clona el repositorio:
+1. Clone the repository:
 
-       git clone https://github.com/TU-USUARIO/NOMBRE-REPO.git
+       git clone https://github.com/elisabethfalcongordillo21/Practice1-Gitlab
 
-2. Entra en la carpeta del proyecto:
+2. Go into the project folder:
 
-       cd NOMBRE-REPO
+       cd Practice1-Gitlab/pract1
 
-3. Compila el proyecto:
+3. Compile the project:
 
        mvn clean compile
 
-4. Genera la documentación Javadoc:
+4. Generate the Javadoc documentation:
 
        mvn javadoc:javadoc
 
-5. Abre en el navegador el archivo `target/site/apidocs/index.html`.
-
+5. Open the file `target/site/apidocs/index.html` in your browser.
